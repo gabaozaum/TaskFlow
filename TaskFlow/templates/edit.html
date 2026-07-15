@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Editar Tarefa</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Editar Tarefa</h1>
+
+    <form method="POST">
+
+        <label>Titulo</label>
+
+        <input
+                type="text"
+                name="title"
+                value="{{ task.title }}"
+                required
+        >
+
+        <label>Descricao</label>
+
+        <textarea
+                name="description"
+                rows="5"
+                required
+        >{{ task.description }}</textarea>
+
+        <label>Prioridade</label>
+
+        <select name="priority">
+
+            <option
+                    {% if task.priority=="Baixa" %}selected{% endif %}
+            >
+                Baixa
+            </option>
+
+            <option
+                    {% if task.priority=="Média" %}selected{% endif %}
+            >
+                Media
+            </option>
+
+            <option
+                    {% if task.priority=="Alta" %}selected{% endif %}
+            >
+                Alta
+            </option>
+
+        </select>
+
+        <button type="submit">
+
+            Atualizar
+
+        </button>
+
+    </form>
+
+    <a href="/" class="back">
+
+        Voltar
+
+    </a>
+
+</div>
+
+</body>
+
+</html>

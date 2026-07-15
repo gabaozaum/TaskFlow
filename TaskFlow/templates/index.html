@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>TaskFlow</h1>
+
+    <p>Sistema de Gerenciamento de Tarefas</p>
+
+    <a href="/add" class="btn">
+        Nova Tarefa
+    </a>
+
+    {% if tasks %}
+
+    <table>
+
+        <thead>
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Titulo</th>
+
+            <th>Descricao</th>
+
+            <th>Prioridade</th>
+
+            <th>Status</th>
+
+            <th>Acoes</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for task in tasks %}
+
+        <tr>
+
+            <td>{{ task.id }}</td>
+
+            <td>{{ task.title }}</td>
+
+            <td>{{ task.description }}</td>
+
+            <td>{{ task.priority }}</td>
+
+            <td>
+
+                {% if task.completed %}
+
+                <span class="done">Concluida</span>
+
+                {% else %}
+
+                <span class="pending">Pendente</span>
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                <a href="/edit/{{ task.id }}" class="edit">
+                    Editar
+                </a>
+
+                <a href="/delete/{{ task.id }}" class="delete">
+                    Excluir
+                </a>
+
+                {% if not task.completed %}
+
+                <a href="/complete/{{ task.id }}" class="complete">
+                    Concluir
+                </a>
+
+                {% endif %}
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="empty">
+
+        Nenhuma tarefa cadastrada.
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
