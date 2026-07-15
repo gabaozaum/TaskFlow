@@ -9,7 +9,8 @@ on:
     branches:
       - main
       - master
-
+  workflow_dispatch:
+  
 jobs:
 
   test:
